@@ -1,0 +1,3 @@
+[submodule "ROTC-semi-guided-material"]
+	path = ROTC-semi-guided-material
+	url = https://github.com/twlabs/ROTC-semi-guided-material.git
