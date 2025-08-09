@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: crud-app-service
+  namespace: crud-app
+
+spec:
+  type: ClusterIP
+  ports:
+    - targetPort: 8000
+      protocol: TCP
+      port: 8000
+  selector:
+      app: crud-backend
+      type: backend

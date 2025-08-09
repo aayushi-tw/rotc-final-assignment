@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crud-app-deployment
+  namespace: crud-app
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: crud-backend
+        type: backend
+    spec:
+      containers:
+        - name: app-conatiner
+          imagePullPolicy: Never
+          image: final_assignment-backend
+          ports:
+            - containerPort: 8000
+          env:
+            - name: db_password
+              valueFrom:
+                secretKeyRef:
+                    name: db-secret
+                    key: password
+            - name: db_address
+              value: crud-db-service
+            - name: db_port
+              value: "5432"
+            - name: db_username
+              value: postgres
+            - name: db_name
+              value: postgres
+  selector:
+    matchLabels:
+      app: crud-backend
+      type: backend
